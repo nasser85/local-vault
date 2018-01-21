@@ -1,0 +1,19 @@
+{
+  "name": "local-vault",
+  "version": "1.0.0",
+  "description": "A Database API that works with local storage.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "localstorage",
+    "db",
+    "database",
+    "local",
+    "vault",
+    "storage"
+  ],
+  "author": "Nasser Abouelazm",
+  "license": "MIT"
+}
