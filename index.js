@@ -1,7 +1,11 @@
 class Table {
   constructor(name, schema) {
     this.name = name;
-    this.cache = {};
+    this.schema = schema;
+    this.obj = this.buildObj();
+  }
+  buildObj() {
+
   }
 
 }
