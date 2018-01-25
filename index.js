@@ -1,57 +1,6 @@
-class Table {
-  constructor(name, schema) {
-    this.name = name;
-    this.schema = schema;
-    this.obj = this.buildObj();
-  }
-  buildObj() {
+import Database from ('/src/Database');
 
-  }
-
-}
-
-class Database {
-    //Database General
-    constructor(name) {
-        this.name = name;
-        this.cache = {};
-        this.tables = {};
-    }
-    persistDb() {
-      var vault = this.decodeDb(window.localStorage.localVault);
-      vault[this.name] = this.encodeDb(this.cache);
-      window.localStorage.localVault= this.encodeDb(vault);
-    }
-    refreshCache() {
-      this.cache = this.decodeDb(this.decodeDb(window.localStorage.localVault)[this.name]);
-    }
-    encodeDb(db) {
-      return btoa(btoa(JSON.stringify(db)));
-    }
-    decodeDb(db) {
-      return JSON.parse(atob(atob(db)));
-    }
-
-    //Tables
-    createTable(name, schema) {
-
-    }
-    dropTable(name) {
-
-    }
-    dropTables() {
-
-    }
-    listTables() {
-
-    }
-    fetchTable(name) {
-
-    }
-
-}
-
-class DatabaseApi {
+export default class DatabaseApi {
     static init() {
       if (!window.localStorage.hasOwnProperty('localVault')) {
         window.localStorage.localVault = this.encode({});
@@ -59,7 +8,7 @@ class DatabaseApi {
       console.log(window.localStorage);
     }
     static encode(vault) {
-      return btoa(btoa(JSON.stringify(vault)));
+      return btoa(btoa(JSON.stringify(vault))); 
     }
     static decode(vault) {
       return JSON.parse(atob(atob(vault)));
@@ -103,3 +52,4 @@ class DatabaseApi {
       console.log(window.localStorage);
     }
 }
+
