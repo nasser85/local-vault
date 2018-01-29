@@ -1,9 +1,11 @@
 export class Table {
-  constructor(name, schema, database, cache) {
+  constructor(name, schema, database, cache, hasMany, hasOne) {
     this.name = name;
     this.schema = schema;
     this.database = database;
     this.cache = cache;
+    this.hasMany = hasMany;
+    this.hasOne = hasOne;
   }
   //Table Access methods
   add(obj) {
@@ -17,7 +19,7 @@ export class Table {
     this.cache.id[this.cache.meta.currId] = entry;
     this.cache.meta.currId++;
     this.database.persistDb();
-    // DEBUG 
+    // DEBUG
     console.log(this.cache);
     console.log('Table.add() => ', entry);
   }
@@ -29,7 +31,7 @@ export class Table {
   update(id, entry) {
     var obj = this.cache.id[id]
     for (var key in entry) {
-      
+
       if (obj.hasOwnProperty(key)) {
         obj[key] = entry[key];
        obj['last_updated_on'] = new Date().getTime();
@@ -98,11 +100,15 @@ export class Table {
   }
 
   //Initializing commands connecting tables
-  hasMany(table) {
-
+  hasMany(tableName) {
+    var table = this.database.fetchTable(tableName);
+    table.schema.push(this.name + 'ID');
+    this.hasMany.push(table.name);
+    this.cache.meta.hasMany.push(table.name);
+    this.database.persistDb();
   }
 
-  hasOne(table) {
+  hasOne(table, at) {
 
   }
 

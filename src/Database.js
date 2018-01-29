@@ -15,7 +15,7 @@ export class Database {
       this.cache = this.decodeDb(this.decodeDb(window.localStorage.localVault)[this.name]);
       this.tables = {};
       Object.keys(this.cache).forEach(tableName => {
-        this.tables[tableName] = new Table(tableName, this.cache[tableName].meta.schema, this, this.cache[tableName]);
+        this.tables[tableName] = new Table(tableName, this.cache[tableName].meta.schema, this, this.cache[tableName], this.cache[tableName].meta.hasMany, this.cache[tableName].meta.hasOne);
       })
     }
     encodeDb(db) {
@@ -33,7 +33,9 @@ export class Database {
       var obj = {
         meta: {
           schema: schema.filter(el => el !== 'id' && el !== 'created_on' && el !== 'last_updated_on'),
-          currId: 1
+          currId: 1,
+          hasMany: [],
+          hasOne: []
         },
         id: {}
       }
