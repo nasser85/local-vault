@@ -1,11 +1,18 @@
 export class Table {
-  constructor(name, schema, database, cache, hasMany, hasOne) {
+  constructor(name, schema, database, cache, _hasMany, _hasOne) {
     this.name = name;
     this.schema = schema;
     this.database = database;
     this.cache = cache;
-    this.hasMany = hasMany;
-    this.hasOne = hasOne;
+    this._hasMany = _hasMany ? _hasMany : [];
+    this._hasOne = _hasOne ? _hasOne : [];
+  }
+
+  _tableExists(tableName) {
+    return tableName instanceof Table || this.database.hasTable(tableName);
+  }
+  _keyExists(key) {
+    return this.schema.indexOf(key) != -1;
   }
   //Table Access methods
   add(obj) {
@@ -72,7 +79,11 @@ export class Table {
     console.log(this.cache);
   }
   fetch(id) {
-    return this.cache.id[id];
+    var obj = this.cache.id[id];
+    this._hasMany.forEach(el => {
+      obj[el + 's'] = this.database.fetchTable(el).fetchByKey(this.name + 'Id', id);
+    })
+    return obj;
   }
   fetchByKey(key, value) {
     //think about if key is "id" or if key doesn't exists
@@ -101,15 +112,22 @@ export class Table {
 
   //Initializing commands connecting tables
   hasMany(tableName) {
-    var table = this.database.fetchTable(tableName);
-    table.schema.push(this.name + 'ID');
-    this.hasMany.push(table.name);
+    if (!this._tableExists(tableName)) {
+      throw new Error('Table ' + tableName + ' does not exist in current database.');
+    }
+    var table = tableName instanceof Table ? tableName : this.database.fetchTable(tableName);
+    table.schema.push(this.name + 'Id');
+    this._hasMany.push(table.name);
     this.cache.meta.hasMany.push(table.name);
     this.database.persistDb();
   }
 
-  hasOne(table, at) {
-
+  hasOne(tableName, at) {
+    if (!this._tableExists(tableName) || !this._keyExists(at)) {
+      throw new Error('Table ' + tableName + ' or Key ' + at + ' does not exist in current database!');
+    }
+    var table = tableName instanceof Table ? tableName : this.database.fetchTable(tableName);
+    //TODO still working
   }
 
 

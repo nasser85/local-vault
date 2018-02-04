@@ -8,7 +8,7 @@ export default class DatabaseApi {
       console.log(window.localStorage);
     }
     static encode(vault) {
-      return btoa(btoa(JSON.stringify(vault))); 
+      return btoa(btoa(JSON.stringify(vault)));
     }
     static decode(vault) {
       return JSON.parse(atob(atob(vault)));

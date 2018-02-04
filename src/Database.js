@@ -26,6 +26,9 @@ export class Database {
     }
 
     //Tables
+    hasTable(table) {
+      return this.tables.hasOwnProperty(table);
+    }
     createTable(name, schema) {
       return this.tables.hasOwnProperty(name) ? new Error("Table " + name + " already exists in Database!  Try fetchTable() instead.") : this.createTableForSure(name, schema);
     }
@@ -58,7 +61,7 @@ export class Database {
       return Object.keys(this.tables);
     }
     fetchTable(name) {
-      return this.tables.hasOwnProperty(name) ? this.tables[name] : new Error("Table " + name + " does not exist in Database!  Try createTable() instead.");
+      return this.hasTable(name) ? this.tables[name] : false;
     }
 
 }
