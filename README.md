@@ -38,6 +38,7 @@ DatabaseApi.fetch('office');
 ```javascript
 DatabaseApi.destroyAll();
 ```
+**Please Note** *that after you run ``DatabaseApi.destoryAll()`` you must run ``DatabaseApi.init()`` before you utilize any of **Local Vault's** functionality, otherwise an error will be thrown.*
 ## Database Methods
 To get started, assume we create a database called "school".
 ```javascript
