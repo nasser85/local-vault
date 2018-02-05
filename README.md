@@ -79,7 +79,7 @@ const Teacher = dbSchool.createTable('teacher', ['name', 'room', 'officePeriod',
 let teacherMary = {
   name: 'Mary Shippen',
   room: '7B',
-  officePeriod : 3,
+  officePeriod : '3',
   subject: 'British Literature'
 }
 Teacher.add(teacherMary);
@@ -153,3 +153,63 @@ Teacher.fetchByKey('name', 'Dev Patel');
     ]
 ```
 Notice that the ``fetchByKey`` method returns an array of objects.  This is due to the possibilty of mutliple entries that match the key-value pair passed.  ``fetch`` simply returns a single object since ``ids`` are always the primary key and thus unique.
+Finally, the ``fetchAll`` method does just that!
+```javascript
+Teacher.fetchAll();
+//[
+    {
+      id: 1,
+      created_on: 1213527327165,
+      last_updated_on: 1213527327165,
+      name: 'Mary Shippen',
+      room: '7B',
+      officePeriod: '3',
+      subject: 'British Literature'
+    },
+    {
+      id: 2,
+      created_on: 1213787327165,
+      last_updated_on: 1414786657168,
+      name: 'Dev Patel',
+      room: '2C',
+      officePeriod: '1',
+      subject: 'AP Calculus'
+    },
+    {
+      id: 3,
+      created_on: 1313787327165,
+      last_updated_on: 1314786657168,
+      name: 'Harold Feltch',
+      room: '6A',
+      officePeriod: '5',
+      subject: 'Civics'
+    }
+  ];
+ ```
+ ### Updating Entries
+ You can update entries by either ``id`` or by key-value pair.  
+ ```javascript
+ let nextSemester = {
+  room: '5B',
+  subject: 'World History',
+  officePeriod: '1'
+ };
+ Teacher.update(3, nextSemester);
+ // {
+      id: 3,
+      created_on: 1313787327165,
+      last_updated_on: 1517791669467,
+      name: 'Harold Feltch',
+      room: '5B',
+      officePeriod: '1',
+      subject: 'World History'
+    }
+  ```
+  The ``updateByKey`` method can be used to update all entries with ``"officePeriod" : '1'``.
+  ```javascript
+  Teacher.updateByKey('officePeriod', '1', {officePeriod: '2'});
+  Teacher.fetchByKey('name', 'Harold Feltch')[0].officePeriod = '2';
+  // true
+  Teacher.fetch(2).officePeriod = '2';
+  // true
+  ```
