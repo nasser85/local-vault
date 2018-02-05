@@ -1,4 +1,4 @@
-import Table from ('Table');
+import Table from 'Table';
 export class Database {
     //Database General
     constructor(name) {
