@@ -1,4 +1,4 @@
-import Database from ('/src/Database');
+import Database from 'Database';
 
 export default class DatabaseApi {
     static init() {

@@ -2,9 +2,12 @@
   "name": "local-vault",
   "version": "1.0.0",
   "description": "A Database API that works with local storage.",
-  "main": "index.js",
+  "main": "./dist/index.js",
+  "module": "./src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "babel src --out-dir dist",
+    "prepublishOnly": "npm run build",
+    "test": "ava"
   },
   "keywords": [
     "localstorage",
@@ -14,6 +17,34 @@
     "vault",
     "storage"
   ],
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "ava": "^0.21.0",
+    "babel-preset-env": "^1.5.1",
+    "babel-register": "^6.24.1"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "last 2 versions",
+              "ie >= 10"
+            ],
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "ava": {
+    "require": [
+      "babel-register"
+    ],
+    "babel": "inherit"
+  },
   "author": "Nasser Abouelazm",
   "license": "MIT"
 }
