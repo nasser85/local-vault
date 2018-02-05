@@ -2,6 +2,7 @@
 ### Transform your localStorage into a relational database.
 ## What is Local Vault?
 **Local Vault** is a light weight ORM that allows you to build, develop, and access relational databases in your ``localStorage``.  You can create multiple databases, tables, and relationships such as ``hasMany`` or ``oneToOne``.  All database data is encoded into base-64 string and persisted to ``window.localStorage.localVault``.
+
 **Local Vault** is super easy to set up and can be used in conjunction with any front end framework as well as on the back end in ``node``.  This tool can be used either for development or production, depending on the scale and particulars of your project.
 ## Getting Started
 ```bash
