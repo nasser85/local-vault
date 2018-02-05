@@ -14,13 +14,13 @@ const LocalVault = require('local-vault');
 ```
 ## Database Creation and Development
 ### Creating a Database
-*Creating a database named "school" using the LocalVault Database ORM utility from **Getting Started***
+Creating a database named "school" using the LocalVault Database ORM utility from **Getting Started**
 ```javascript
 LocalVault.init();
 LocalVault.create('school');
 ```
 ### Fetching a Database
-*Creating database "school" and then assigning a variable to it.*
+Creating database "school" and then assigning a variable to it.
 ```javascript
 LocalVault.create('school');
 const database = LocalVault.fetch('school');
@@ -30,13 +30,13 @@ Alternatively, you could combine Database creation and fetching in one line with
 const database = LocalVault.create('school');
 ```
 ### Listing all Existing Databases
-*Assuming Local Vault currently has databases named "larry", "curly", and "moe".*
+Assuming Local Vault currently has databases named "larry", "curly", and "moe".
 ```javascript
 const databaseNames = LocalVault.list();
 // ['larry', 'curly, 'moe']
 ```
 ### Removing a Database
-*Deleting database "office"*
+Deleting database "office"
 ```javascript
 LocalVault.destroy('office');
 ```
@@ -49,7 +49,7 @@ LocalVault.fetch('office');
 ```javascript
 LocalVault.destroyAll();
 ```
-**Please Note** *that after you run ``DatabaseApi.destoryAll()`` you must run ``DatabaseApi.init()`` before you utilize any of **Local Vault's** functionality, otherwise an error will be thrown.*
+**Please Note** *that after you run ``LocalVault.destoryAll()`` you must run ``LocalVault.init()`` before you utilize any of **Local Vault's** functionality, otherwise an error will be thrown.*
 ## Database Methods
 To get started, assume we create a database called ``"school"``.
 ```javascript
@@ -70,11 +70,11 @@ dbSchool.listTables();
 // ['teacher', 'student', 'lesson', 'test'];
 ```
 ### Dropping Tables
-*A single table...*
+A single table...
 ```javascript
 dbSchool.dropTable('teacher');
 ```
-*All tables...*
+All tables...
 ```javascript
 dbSchool.dropTables();
 ```
