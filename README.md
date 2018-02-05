@@ -40,12 +40,12 @@ DatabaseApi.destroyAll();
 ```
 **Please Note** *that after you run ``DatabaseApi.destoryAll()`` you must run ``DatabaseApi.init()`` before you utilize any of **Local Vault's** functionality, otherwise an error will be thrown.*
 ## Database Methods
-To get started, assume we create a database called "school".
+To get started, assume we create a database called ``"school"``.
 ```javascript
 const dbSchool = DatabaseApi.create('school');
 ```
 ### Creating a Table
-*The <strong>createTable</strong> method accepts to parameters; the table name and the table's schema.  The schema is a simple array outlining the table's keys.  Note that the primary key, "id", is automatically applied to the table.  A unique id is automatically added to each new table entry.*
+The ``createTable`` method accepts to parameters; the *table name* and the *table's schema*.  The schema is a simple array outlining the table's keys.  Note that the primary key, ``"id"``, is automatically applied to the table.  A unique id is automatically added to each new table entry.
 ```javascript
 const Teacher = dbSchool.createTable('teacher', ['name', 'email', 'phone', 'subject', 'officeHours']);
 ```
@@ -208,8 +208,8 @@ Teacher.fetchAll();
   The ``updateByKey`` method can be used to update all entries with ``"officePeriod" : '1'``.
   ```javascript
   Teacher.updateByKey('officePeriod', '1', {officePeriod: '2'});
-  Teacher.fetchByKey('name', 'Harold Feltch')[0].officePeriod = '2';
+  Teacher.fetchByKey('name', 'Harold Feltch')[0].officePeriod === '2';
   // true
-  Teacher.fetch(2).officePeriod = '2';
+  Teacher.fetch(2).officePeriod === '2';
   // true
   ```
