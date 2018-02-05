@@ -32,7 +32,7 @@ const database = LocalVault.create('school');
 ### Listing all Existing Databases
 Assuming Local Vault currently has databases named ``"larry"``, ``"curly"``, and ``"moe"``.
 ```javascript
-const databaseNames = LocalVault.list();
+let databaseNames = LocalVault.list();
 // ['larry', 'curly, 'moe']
 ```
 ### Removing a Database
