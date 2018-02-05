@@ -10,7 +10,7 @@ import LocalVault from 'local-vault';
 ```
 Using ``node``
 ```javascript
-const LocalVault = require('local-vault');
+var LocalVault = require('local-vault');
 ```
 ## Database Creation and Development
 ### Creating a Database
