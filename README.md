@@ -81,8 +81,8 @@ dbSchool.dropTables();
 ## Table Methods
 For the following examples, assume we have a database, ``"school"`` which has a table, ``"teacher"``.
 ```javascript
-DatabaseApi.init();
-const dbSchool = DatabaseApi.create('school');
+LocalVault.init();
+const dbSchool = LocalVault.create('school');
 const Teacher = dbSchool.createTable('teacher', ['name', 'room', 'officePeriod', 'subject']);
 ```
 ### Posting an Entry
