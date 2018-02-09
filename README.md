@@ -7,8 +7,10 @@ Local Vault is super easy to set up and can be used in conjunction with any fron
 ## Table of Contents
 * [Getting Started](#getting-started)
 * [Database Creation and Development](#database-creation-and-development)
-* [Database Methods](#contributing-to-this-repo)
+* [Database Methods](#database-methods)
 * [Table Methods](#table-methods)
+* [Debugging](#debugging)
+* [Contributing](#contributing)
 ## Getting Started
 ```bash
 npm install local-vault --save-dev
