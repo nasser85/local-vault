@@ -81,7 +81,7 @@ export class Table {
   fetch(id) {
     var obj = this.cache.id[id];
     this._hasMany.forEach(el => {
-      obj[el + 's'] = this.database.fetchTable(el).fetchByKey(this.name + 'Id', id);
+      obj[el + 's'] = this.database.fetchTable(el).fetchByKey(this.name + 'Id', obj[x].id);
     })
     return obj;
   }
@@ -91,6 +91,9 @@ export class Table {
     var found = [];
     for (var x in obj) {
       if (obj[x][key] == value) {
+        this._hasMany.forEach(el => {
+          obj[x][el + 's'] = this.database.fetchTable(el).fetchByKey(this.name + 'Id', id);
+        })
         found.push(obj[x]);
       }
     }
