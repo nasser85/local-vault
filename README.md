@@ -236,4 +236,4 @@ Teacher.fetchAll();
   // true
   ```
 ### Removing Entries
-You can remove an entry either by id or key-value pair.
+You can remove an entry either by ``id`` or key-value pair.
