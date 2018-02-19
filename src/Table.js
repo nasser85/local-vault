@@ -122,13 +122,4 @@ export class Table {
     this.database.persistDb();
   }
 
-  hasOne(tableName, at) {
-    if (!this._tableExists(tableName) || !this._keyExists(at)) {
-      throw new Error('Table ' + tableName + ' or Key ' + at + ' does not exist in current database!');
-    }
-    var table = tableName instanceof Table ? tableName : this.database.fetchTable(tableName);
-    //TODO still working
-  }
-
-
 }
