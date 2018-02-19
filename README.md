@@ -257,7 +257,8 @@ Teacher.fetchAll();
   ```
 ### Establishing Relationships
 Currently, Local Vault only supports Has-Many type relationships.  There are plans to eventually add One-To-One and Many-To-Many.
-Suppose we add a table to keep track of students to the ``school`` database.
+
+Consider the following example where we add a table to keep track of students to the ``school`` database.
 ```javascript
 const Student = School.createTable('student', ['firstName', 'lastName', 'gender', 'grade']);
 ```
