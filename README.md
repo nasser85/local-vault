@@ -263,15 +263,15 @@ Consider the following example where we add a table to keep track of students to
 const Student = School.createTable('student', ['firstName', 'lastName', 'gender', 'grade']);
 ```
 Since a teacher typically has many students, we can establish a Has-Many relationship between the ``Teacher`` and ``Student`` tables.
-We can do so by passing the instantiated ``Table`` class or table name as a string into the ``hasMany()`` class function.
+We can do so by passing the instantiated ``Table`` class or table name as a string into the ``hasMany()`` class method.
 ```javascript
 Teacher.hasMany(Student);
 // or
 Teacher.hasMany('student');
 ```
-The setting of this relationship has **two major implications**
+Establishing this relationship has **two major implications:**
 * The ``Student`` table now has a ``teacherId`` field added to its schema.  The ``teacherId`` is essentially a foreign key that relates to the primary key (``id`` field) of the ``Teacher`` table.
-* When entries are fetched from the ``Teacher`` table, they will have a ``students`` field, which points to an array of ``Student`` entries whose related foreign key(s) match the pulled ``Teacher`` primary key(s).  Consider the example below.
+* When entries are fetched from the ``Teacher`` table, they will have a ``students`` field, which points to an array of ``Student`` entries whose related foreign key(s) match the pulled ``Teacher`` primary key(s).  See the example below.
 ```javascript
 let students = [
     {
@@ -388,4 +388,6 @@ LocalVault.debugOn();
 
 LocalVault.debugOff();
 ```
+
+## Contributing
 
