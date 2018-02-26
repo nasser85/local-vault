@@ -52,7 +52,9 @@ const database = LocalVault.create('school');
 Assuming Local Vault currently has databases named ``"larry"``, ``"curly"``, and ``"moe"``.
 ```javascript
 let databaseNames = LocalVault.list();
-// ['larry', 'curly, 'moe']
+
+// =>
+  ['larry', 'curly, 'moe']
 ```
 
 ### Removing a Database
@@ -63,7 +65,9 @@ LocalVault.destroy('office');
 Therefore...
 ```javascript
 LocalVault.fetch('office');
-// throw new Error()
+
+// =>
+  throw new Error()
 ```
 
 ### Removing all Databases
@@ -92,7 +96,9 @@ const Teacher = dbSchool.fetchTable('teacher');
 ### Listing all Tables
 ```javascript
 dbSchool.listTables();
-// ['teacher', 'student', 'lesson', 'test'];
+
+// => 
+  ['teacher', 'student', 'lesson', 'test'];
 ```
 
 ### Dropping Tables
@@ -168,7 +174,9 @@ All three objects would be added to the table and given ``ids`` and ``timestamps
 There are two ways to fetch and entry, by ``id`` or by ``key``.
 ```javascript
 Teacher.fetch(2);
-// {
+
+// =>
+  {
       id: 2,
       created_on: 1213787327165,
       last_updated_on: 1414786657168,
@@ -181,23 +189,27 @@ Teacher.fetch(2);
 When fetching an entry by key, you must pass an existing *key-value pair*.
 ```javascript
 Teacher.fetchByKey('name', 'Dev Patel');
-// [
-      {
-        id: 2,
-        created_on: 1213787327165,
-        last_updated_on: 1414786657168,
-        name: 'Dev Patel',
-        room: '2C',
-        officePeriod: '1',
-        subject: 'AP Calculus'
-      }
-    ]
+
+// =>
+  [
+    {
+      id: 2,
+      created_on: 1213787327165,
+      last_updated_on: 1414786657168,
+      name: 'Dev Patel',
+      room: '2C',
+      officePeriod: '1',
+      subject: 'AP Calculus'
+    }
+  ]
 ```
 Notice that the ``fetchByKey`` method returns an array of objects.  This is due to the possibilty of mutliple entries that match the key-value pair passed.  ``fetch`` simply returns a single object since ``ids`` are always the primary key and thus unique.
 Finally, the ``fetchAll`` method does just that!
 ```javascript
 Teacher.fetchAll();
-//[
+
+// =>
+  [
     {
       id: 1,
       created_on: 1213527327165,
@@ -237,23 +249,28 @@ Teacher.fetchAll();
   officePeriod: '1'
  };
  Teacher.update(3, nextSemester);
- // {
-      id: 3,
-      created_on: 1313787327165,
-      last_updated_on: 1517791669467,
-      name: 'Harold Feltch',
-      room: '5B',
-      officePeriod: '1',
-      subject: 'World History'
-    }
+ // =>
+  {
+    id: 3,
+    created_on: 1313787327165,
+    last_updated_on: 1517791669467,
+    name: 'Harold Feltch',
+    room: '5B',
+    officePeriod: '1',
+    subject: 'World History'
+  }
   ```
   The ``updateByKey`` method can be used to update all entries with ``"officePeriod" : '1'``.
   ```javascript
   Teacher.updateByKey('officePeriod', '1', {officePeriod: '2'});
   Teacher.fetchByKey('name', 'Harold Feltch')[0].officePeriod === '2';
-  // true
+  
+  // =>
+    true
   Teacher.fetch(2).officePeriod === '2';
-  // true
+  
+  // =>
+    true
   ```
 ### Establishing Relationships
 Currently, Local Vault only supports Has-Many type relationships.  There are plans to eventually add One-To-One and Many-To-Many.
@@ -328,38 +345,42 @@ let students = [
 Student.seed(students)
 
 Teacher.fetch(1)
-// => { id: 1,
-  created_on: 1519066685687,
-  last_updated_on: 1519066685687,
-  name: 'Mary Shippen',
-  room: '7B',
-  officePeriod: '3',
-  subject: 'British Literature',
-  students: 
-   [ { id: 1,
-       created_on: 1519066685699,
-       last_updated_on: 1519066685699,
-       firstName: 'Margaret',
-       lastName: 'Sands',
-       grade: '10',
-       gender: 'female',
-       teacherId: 1 },
-     { id: 4,
-       created_on: 1519066685712,
-       last_updated_on: 1519066685712,
-       firstName: 'Abdullah',
-       lastName: 'Jawad',
-       grade: '10',
-       gender: 'male',
-       teacherId: 1 },
-     { id: 7,
-       created_on: 1519066685729,
-       last_updated_on: 1519066685729,
-       firstName: 'Brit',
-       lastName: 'Wixley',
-       grade: '10',
-       gender: 'female',
-       teacherId: 1 } ] }
+
+// => 
+  { id: 1,
+    created_on: 1519066685687,
+    last_updated_on: 1519066685687,
+    name: 'Mary Shippen',
+    room: '7B',
+    officePeriod: '3',
+    subject: 'British Literature',
+    students: 
+     [ { id: 1,
+         created_on: 1519066685699,
+         last_updated_on: 1519066685699,
+         firstName: 'Margaret',
+         lastName: 'Sands',
+         grade: '10',
+         gender: 'female',
+         teacherId: 1 },
+       { id: 4,
+         created_on: 1519066685712,
+         last_updated_on: 1519066685712,
+         firstName: 'Abdullah',
+         lastName: 'Jawad',
+         grade: '10',
+         gender: 'male',
+         teacherId: 1 },
+       { id: 7,
+         created_on: 1519066685729,
+         last_updated_on: 1519066685729,
+         firstName: 'Brit',
+         lastName: 'Wixley',
+         grade: '10',
+         gender: 'female',
+         teacherId: 1 } 
+      ] 
+  }
 ```
 
 ### Removing Entries
