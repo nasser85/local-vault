@@ -54,7 +54,7 @@ Assuming Local Vault currently has databases named ``"larry"``, ``"curly"``, and
 let databaseNames = LocalVault.list();
 
 // =>
-  ['larry', 'curly, 'moe']
+  ['larry', 'curly', 'moe']
 ```
 
 ### Removing a Database
