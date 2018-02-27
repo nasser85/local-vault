@@ -14,6 +14,7 @@ Local Vault is super easy to set up and can be used in conjunction with any fron
 * [Table Methods](#table-methods)
 * [Debugging](#debugging)
 * [Contributing](#contributing)
+* [License](#license)
 
 ## Getting Started
 ```bash
@@ -412,3 +413,5 @@ LocalVault.debugOff();
 
 ## Contributing
 
+## License
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
