@@ -5,7 +5,6 @@ export default class DatabaseApi {
       if (!window.localStorage.hasOwnProperty('localVault')) {
         window.localStorage.localVault = this.encode({});
       }
-      console.log(window.localStorage);
     }
     static encode(vault) {
       return btoa(btoa(JSON.stringify(vault)));
@@ -19,12 +18,12 @@ export default class DatabaseApi {
         db.persistDb();
         return db;
       } else {
-        throw Error('Database ' + name + ' already exists!  Try fetch("' + name + '") method instead.');
+        return this.fetch(name);
       }
     }
     static fetch(name) {
       if (!this.doesExist(name)) {
-        throw Error('Database ' + name + ' does not exist!  Try create("' + name  + '") method instead');
+        return false;
       } else {
         var db = new Database(name);
         db.refreshCache();
@@ -41,15 +40,14 @@ export default class DatabaseApi {
         console.log(store);
         window.localStorage.localVault = this.encode(store);
       } else {
-        throw Error('Database ' + name + ' could not be destroyed!  Database ' + name + ' does not exist.')
+        //throw Error('Database ' + name + ' could not be destroyed!  Database ' + name + ' does not exist.')
       }
     }
     static doesExist(name) {
-        return this.decode(window.localStorage.localVault).hasOwnProperty(name);
+      return this.decode(window.localStorage.localVault).hasOwnProperty(name);
     }
     static destroyAll() {
       delete window.localStorage.localVault;
-      console.log(window.localStorage);
     }
 }
 

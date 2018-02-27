@@ -49,6 +49,29 @@ Alternatively, you could combine Database creation and fetching in one line with
 const database = LocalVault.create('school');
 ```
 
+### Confirming a Database's Existence
+There are two ways to find out whether or not a database exists.
+1. Using ``fetch()``
+```javascript
+const database = LocalVault.fetch('school');
+// =>
+instanceof Database()
+
+const database = LocalVault.fetch('vacation');
+// =>
+false
+```
+2. Using ``doesExist()``
+```javascript
+const databaseExists = LocalVault.doesExist('school');
+// =>
+true
+
+const databaseExists = LocalVault.doesExist('vacation');
+// =>
+false
+```
+
 ### Listing all Existing Databases
 Assuming Local Vault currently has databases named ``"larry"``, ``"curly"``, and ``"moe"``.
 ```javascript
@@ -68,7 +91,7 @@ Therefore...
 LocalVault.fetch('office');
 
 // =>
-  throw new Error()
+  false
 ```
 
 ### Removing all Databases
