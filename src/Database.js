@@ -30,7 +30,7 @@ export class Database {
       return this.tables.hasOwnProperty(table);
     }
     createTable(name, schema) {
-      return this.tables.hasOwnProperty(name) ? new Error("Table " + name + " already exists in Database!  Try fetchTable() instead.") : this.createTableForSure(name, schema);
+      return this.tables.hasOwnProperty(name) ? this.tables[name] : this.createTableForSure(name, schema);
     }
     createTableForSure(name, schema) {
       var obj = {
@@ -62,6 +62,10 @@ export class Database {
     }
     fetchTable(name) {
       return this.hasTable(name) ? this.tables[name] : false;
+    }
+    
+    _isDebugMode() {
+      return this.decodeDb(window.localStorage.localVault)['_debugMode'];
     }
 
 }

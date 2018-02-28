@@ -26,14 +26,9 @@ export class Table {
     this.cache.id[this.cache.meta.currId] = entry;
     this.cache.meta.currId++;
     this.database.persistDb();
-    // DEBUG
-    console.log(this.cache);
-    console.log('Table.add() => ', entry);
   }
   seed(arr) {
-    arr.forEach(el => {
-      return this.add(el);
-    })
+    arr.forEach(el => this.add(el));
   }
   update(id, entry) {
     var obj = this.cache.id[id]
@@ -45,10 +40,12 @@ export class Table {
       }
     }
     this.database.persistDb();
-    console.log(this.cache);
   }
   updateByKey(key, value, entry) {
     //think about if key is "id" or if key doesn't exists
+    if (key.toLowerCase() == 'id') {
+      return this.update(value, entry);
+    }
     var obj = this.cache.id;
     for (var x in obj) {
       if (obj[x][key] == value) {
@@ -56,12 +53,10 @@ export class Table {
       }
     }
     this.database.persistDb();
-    console.log(this.cache);
   }
   remove(id) {
     delete this.cache.id[id];
     this.database.persistDb();
-    console.log(this.cache);
   }
   removeByKey(key, value) {
     var obj = this.cache.id;
@@ -71,12 +66,10 @@ export class Table {
       }
     }
     this.database.persistDb();
-    console.log(this.cache);
   }
   removeAll() {
     this.cache.id = {};
     this.database.persistDb();
-    console.log(this.cache);
   }
   fetch(id) {
     var obj = this.cache.id[id];
@@ -86,7 +79,9 @@ export class Table {
     return obj;
   }
   fetchByKey(key, value) {
-    //think about if key is "id" or if key doesn't exists
+    if (key.toLowerCase() == 'id') {
+      return this.fetch(value);
+    }
     var obj = this.cache.id;
     var found = [];
     for (var x in obj) {
@@ -105,7 +100,6 @@ export class Table {
     for (var key in obj) {
       arr.push(obj[key]);
     }
-    console.log(arr);
     return arr;
   }
   updateDbCache() {
@@ -116,13 +110,17 @@ export class Table {
   //Initializing commands connecting tables
   hasMany(tableName) {
     if (!this._tableExists(tableName)) {
-      throw new Error('Table ' + tableName + ' does not exist in current database.');
+      throw new Error('Table ' + tableName + ' does not exist in Database ' + this.database.name);
     }
     var table = tableName instanceof Table ? tableName : this.database.fetchTable(tableName);
     table.schema.push(this.name + 'Id');
     this._hasMany.push(table.name);
     this.cache.meta.hasMany.push(table.name);
     this.database.persistDb();
+  }
+
+  _isDebugMode() {
+    return this.database._isDebugMode();
   }
 
 }
