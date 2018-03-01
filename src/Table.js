@@ -1,3 +1,5 @@
+import { DbDebugger } from './DbDebugger';
+
 export class Table {
   constructor(name, schema, database, cache, _hasMany, _hasOne) {
     this.name = name;
@@ -6,6 +8,7 @@ export class Table {
     this.cache = cache;
     this._hasMany = _hasMany ? _hasMany : [];
     this._hasOne = _hasOne ? _hasOne : [];
+    this.debugger = new DbDebugger('Table', name);
   }
 
   _tableExists(tableName) {
@@ -26,11 +29,14 @@ export class Table {
     this.cache.id[this.cache.meta.currId] = entry;
     this.cache.meta.currId++;
     this.database.persistDb();
+    if (this._isDebugMode()) {
+      this.debugger.log('post', 'add', entry, 'success', null);
+    }
   }
   seed(arr) {
     arr.forEach(el => this.add(el));
   }
-  update(id, entry) {
+  update(id, entry, entryPoint) {
     var obj = this.cache.id[id]
     for (var key in entry) {
 
@@ -40,6 +46,9 @@ export class Table {
       }
     }
     this.database.persistDb();
+    if (this._isDebugMode()) {
+      this.debugger.log('put', entryPoint ? entryPoint : 'update', obj, 'success', null);
+    }
   }
   updateByKey(key, value, entry) {
     //think about if key is "id" or if key doesn't exists
