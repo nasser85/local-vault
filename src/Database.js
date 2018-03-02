@@ -1,10 +1,12 @@
 import { Table } from './Table';
+import { DbDebugger } from './DbDebugger';
 export class Database {
     //Database General
     constructor(name) {
         this.name = name;
         this.cache = {};
         this.tables = {};
+        this.debugger = new DbDebugger('Database', name);
     }
     persistDb() {
       var vault = this.decodeDb(window.localStorage.localVault);

@@ -18,7 +18,7 @@ export class Table {
     return this.schema.indexOf(key) != -1;
   }
   //Table Access methods
-  add(obj) {
+  add(obj, entryPoint) {
     var entry = {};
     entry.id = this.cache.meta.currId;
     entry['created_on'] = new Date().getTime();
@@ -30,11 +30,11 @@ export class Table {
     this.cache.meta.currId++;
     this.database.persistDb();
     if (this._isDebugMode()) {
-      this.debugger.log('post', 'add', entry, 'success', null);
+      this.debugger.log('post', entryPoint ? entryPoint : 'add', entry, 'success', null);
     }
   }
   seed(arr) {
-    arr.forEach(el => this.add(el));
+    arr.forEach(el => this.add(el, 'seed'));
   }
   update(id, entry, entryPoint) {
     var obj = this.cache.id[id]
@@ -53,12 +53,12 @@ export class Table {
   updateByKey(key, value, entry) {
     //think about if key is "id" or if key doesn't exists
     if (key.toLowerCase() == 'id') {
-      return this.update(value, entry);
+      return this.update(value, entry, 'updateByKey');
     }
     var obj = this.cache.id;
     for (var x in obj) {
       if (obj[x][key] == value) {
-        this.update(x, entry);
+        this.update(x, entry, 'updateByKey');
       }
     }
     this.database.persistDb();
@@ -66,12 +66,18 @@ export class Table {
   remove(id) {
     delete this.cache.id[id];
     this.database.persistDb();
+    if (this._isDebugMode()) {
+      this.debugger.log('delete', 'remove', 'ENTRY: ' + id, 'success', null);
+    }
   }
   removeByKey(key, value) {
     var obj = this.cache.id;
     for (var x in obj) {
       if (obj[x][key] == value) {
         delete obj[x];
+        if (this._isDebugMode()) {
+          this.debugger.log('delete', 'removeByKey', 'ENTRY: ' + x, 'success', null);
+        }
       }
     }
     this.database.persistDb();
@@ -79,17 +85,23 @@ export class Table {
   removeAll() {
     this.cache.id = {};
     this.database.persistDb();
+    if (this._isDebugMode()) {
+      this.debugger.log('delete', 'removeAll', 'ALL ENTRIES', 'success', null);
+    }
   }
-  fetch(id) {
+  fetch(id, entryPoint) {
     var obj = this.cache.id[id];
     this._hasMany.forEach(el => {
       obj[el + 's'] = this.database.fetchTable(el).fetchByKey(this.name + 'Id', obj[x].id);
     })
+    if (this._isDebugMode()) {
+      this.debugger.log('get', entryPoint ? entryPoint : 'fetch', obj, 'success', null);
+    }
     return obj;
   }
   fetchByKey(key, value) {
     if (key.toLowerCase() == 'id') {
-      return this.fetch(value);
+      return this.fetch(value, 'fetchByKey');
     }
     var obj = this.cache.id;
     var found = [];
@@ -108,6 +120,9 @@ export class Table {
     var arr = [];
     for (var key in obj) {
       arr.push(obj[key]);
+    }
+    if (this._isDebugMode()) {
+      this.debugger.log('get', 'fetchAll', arr, 'success', null);
     }
     return arr;
   }

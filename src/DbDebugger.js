@@ -37,17 +37,17 @@ export class DbDebugger {
 
 	logGet(classMethod, payload, status, error) {
 		if (status == 'success') {
-			console.log("%cGET @ %c" + classMethod + "() %c=> ", "color: orange; font-size: 12px;", "color: purple; font-size: 12px;", "color: orange; font-size: 12px;", payload, '\nto ' + this.classType + ' ' + this.name)
+			console.log("%cGET @ %c" + classMethod + "() %c=> ", "color: orange; font-size: 12px;", "color: purple; font-size: 12px;", "color: orange; font-size: 12px;", payload, '\nfrom ' + this.classType + ' ' + this.name)
 		} else {
-			console.log("%c !FAILED %c GET @ %" + classMethod + "() %c=> ", "background-color: red; color: white; font-size: 12px;", "color: orange; font-size: 12px;", "color: purple; font-size: 12px;", "color: orange; font-size: 12px;", payload, '\nto ' + this.classType + ' ' + this.name + '\n' + error)
+			console.log("%c !FAILED %c GET @ %" + classMethod + "() %c=> ", "background-color: red; color: white; font-size: 12px;", "color: orange; font-size: 12px;", "color: purple; font-size: 12px;", "color: orange; font-size: 12px;", payload, '\nfrom ' + this.classType + ' ' + this.name + '\n' + error)
 		}
 	}
 
 	logDelete(classMethod, payload, status, error) {
 		if (status == 'success') {
-			console.log("%cDELETE @ %c" + classMethod + "() %c=> ", "color: red; font-size: 12px;", "color: purple; font-size: 12px;", "color: red; font-size: 12px;", payload, '\nto ' + this.classType + ' ' + this.name)
+			console.log("%cDELETE @ %c" + classMethod + "() %c=> ", "color: red; font-size: 12px;", "color: purple; font-size: 12px;", "color: red; font-size: 12px;", payload, '\nfrom ' + this.classType + ' ' + this.name)
 		} else {
-			console.log("%c !FAILED %c DELETE @ %" + classMethod + "() %c=> ", "background-color: red; color: white; font-size: 12px;", "color: red; font-size: 12px;", "color: purple; font-size: 12px;", "color: red; font-size: 12px;", payload, '\nto ' + this.classType + ' ' + this.name + '\n' + error)
+			console.log("%c !FAILED %c DELETE @ %" + classMethod + "() %c=> ", "background-color: red; color: white; font-size: 12px;", "color: red; font-size: 12px;", "color: purple; font-size: 12px;", "color: red; font-size: 12px;", payload, '\nfrom ' + this.classType + ' ' + this.name + '\n' + error)
 		}
 	}
 
