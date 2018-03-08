@@ -5,7 +5,7 @@
 ## What is Local Vault?
 **Local Vault** is a light weight ORM that allows you to build, develop, and access relational databases in your ``localStorage``.  You can create multiple databases, tables, and relationships such as ``hasMany`` or ``oneToOne``.  All database data is encoded into a base-64 string and persisted to ``window.localStorage.localVault``.
 
-Local Vault is super easy to set up and can be used in conjunction with any front end framework as well as on the back end in ``node``.  This tool can be used either for development or production, depending on the scale and particulars of your project.
+Local Vault is super easy to set up and can be used in conjunction with any front end framework.  This tool can be used either for development or production, depending on the scale and particulars of your project.
 
 ## Table of Contents
 * [Getting Started](#getting-started)
@@ -23,10 +23,6 @@ npm install local-vault --save-dev
 On the front end just ``import`` the **Local Vault** Database ORM
 ```javascript
 import { LocalVault } from 'local-vault';
-```
-Using ``node``
-```javascript
-const LocalVault = require('local-vault');
 ```
 
 ## Database Creation and Development
