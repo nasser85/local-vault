@@ -432,9 +432,11 @@ LocalVault.debugOff();
 
 ## Contributing
 Contributing should be directed toward a specific issue.
+#### Fork the Repo
+
 #### Clone the Repo
 ```bash
-git clone https://github.com/nasser85/local-vault.git
+git clone https://github.com/YOUR_GITHUB_USERNAME/local-vault.git
 ```
 
 #### NPM Install
@@ -444,7 +446,7 @@ npm install
 
 #### Create a branch off of ``master`` to address an issue
 ```bash
-git checkout -b 'feature/issue-<ISSUE NUMBER>'
+git checkout -b 'feature/issue-ISSUE_NUMBER'
 ```
 for example:
 ```bash
@@ -459,7 +461,7 @@ git commit -m 'thoughtful, concise, high level outline of change'
 
 #### Push into Your Branch
 ```bash
-git push origin feature/issue-<ISSUE NUMBER>
+git push origin feature/issue-ISSUE_NUMBER
 ```
 
 #### Create a Pull Request and tag the relevant issue(s) in that request
