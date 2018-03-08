@@ -1,6 +1,6 @@
 {
   "name": "local-vault",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A Database API that works with local storage.",
   "main": "./dist/index.js",
   "module": "./src/index.js",
