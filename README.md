@@ -431,6 +431,40 @@ LocalVault.debugOff();
 ```
 
 ## Contributing
+Contributing should be directed toward a specific issue.
+#### Clone the Repo
+```bash
+git clone https://github.com/nasser85/local-vault.git
+```
+
+#### NPM Install
+```bash
+npm install
+```
+
+#### Create a branch off of ``master`` to address an issue
+```bash
+git checkout -b 'feature/issue-<ISSUE NUMBER>'
+```
+for example:
+```bash
+git checkout -b 'feature/issue-9'
+```
+
+#### Make changes and Commit Code
+```bash
+git add .
+git commit -m 'thoughtful, concise, high level outline of change'
+```
+
+#### Push into Your Branch
+```bash
+git push origin feature/issue-<ISSUE NUMBER>
+```
+
+#### Create a Pull Request and tag the relevant issue(s) in that request
+
+And that's it!  Thanks for contributing! :tada: :tada: :tada:
 
 ## License
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
