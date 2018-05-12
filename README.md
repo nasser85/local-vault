@@ -22,7 +22,7 @@ npm install local-vault --save-dev
 ```
 On the front end just ``import`` the **Local Vault** Database ORM
 ```javascript
-import { LocalVault } from 'local-vault';
+import LocalVault from 'local-vault';
 ```
 
 ## Database Creation and Development
